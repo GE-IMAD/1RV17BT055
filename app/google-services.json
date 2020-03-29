@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "759781455599",
+    "firebase_url": "https://imadproject1-706ce.firebaseio.com",
+    "project_id": "imadproject1-706ce",
+    "storage_bucket": "imadproject1-706ce.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:759781455599:android:b0f07223a75329edb74d1a",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "759781455599-o57sj9fgr45fjbsijjlc2imq4a7cktrp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxyLeleYcXphW_y_0l0fsxsc9c_ukZuRk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "759781455599-o57sj9fgr45fjbsijjlc2imq4a7cktrp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

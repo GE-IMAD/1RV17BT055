@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="enter_email">Enter email</string>
+    <string name="enter_password">Enter password</string>
+    <string name="create_account">Create account</string>
+    <string name="verify_email">Verify Email</string>
+    <string name="sign_in">Sign-in</string>
+    <string name="unit_test_1">Unit Test 1</string>
+    <string name="unit_test_2">Unit Test-2</string>
+    <string name="marks_obtained1">Marks obtained</string>
+    <string name="marks_obtained2">Marks obtained</string>
+    <string name="subject_2">Subject 2</string>
+    <string name="subject_1">Subject 1</string>
+    <string name="submit">Submit</string>
+    <string name="sign_out">sign out</string>
+    <string name="disconnect">disconnect</string>
+    <string name="status">Status</string>
+    <string name="detail">Detail</string>
+    <string name="google_status_fmt">"status "</string>
+    <string name="don_t_have_account_sign_up">Don\'t have account? Sign Up</string>
+    <string name="email">email</string>
+    <string name="login">Login</string>
+    <string name="password">password</string>
+    <string name="already_have_an_account_login">Already have an account? Login</string>
+    <string name="log_out">Log out</string>
+    <string name="click_to_enter_marks">Click to Enter marks</string>
+    <string name="update">Update</string>
+    <string name="enter_your_name">Enter your name</string>
+</resources>
