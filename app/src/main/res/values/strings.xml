@@ -26,4 +26,27 @@
     <string name="click_to_enter_marks">Click to Enter marks</string>
     <string name="update">Update</string>
     <string name="enter_your_name">Enter your name</string>
+    <string name="test">Test</string>
+    <string name="quiz">Quiz</string>
+    <string name="cie_1_test">CIE-1 TEST</string>
+    <string name="cie_1_quiz">CIE-1 QUIZ</string>
+    <string name="cie_2_test">CIE-2 TEST</string>
+    <string name="cie_3_test">CIE-3 TEST</string>
+    <string name="enter_respective_marks">ENTER RESPECTIVE MARKS</string>
+    <string name="enter_marks">ENTER MARKS:</string>
+    <string name="enter_student_name">Enter student name</string>
+    <string name="total">TOTAL</string>
+    <string name="self_study">SELF STUDY</string>
+    <string name="enter_student_phone_number">Enter student phone number</string>
+    <string name="send_sms">SEND SMS</string>
+    <string name="submit_marks">SUBMIT MARKS</string>
+    <string name="cie_2_quiz">CIE-2 QUIZ</string>
+    <string name="cie_3_quiz">CIE-3 QUIZ</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="textpersonname">textPersonName</string>
+    <string name="your_marks_are_as_follows">Your marks are as follows:</string>
+    <string name="your_total_is">Your total is:</string>
+    <string name="enter_student_usn">Enter Student USN</string>
+    <string name="enter_your_usn">Enter your USN</string>
+
 </resources>

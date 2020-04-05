@@ -8,15 +8,16 @@
 
     <Button
         android:id="@+id/test1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/click_to_enter_marks"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:text="Enter marks"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.294" />
+
 
     <Button
         android:id="@+id/log_out"
@@ -28,18 +29,20 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.445" />
+        app:layout_constraintVertical_bias="0.843" />
 
 
-    <TextView
-        android:id="@+id/option"
-        android:layout_width="113dp"
-        android:layout_height="92dp"
-        android:text="Select which marks to enter:"
+
+    <Button
+        android:id="@+id/search"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:text="Search"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.127" />
+        app:layout_constraintVertical_bias="0.469" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -54,7 +54,7 @@
         android:layout_margin="7dp"
 
 
-        android:text="Sign Up"
+        android:text="@string/sign_up"
 
         android:textAllCaps="false"
 
@@ -97,7 +97,7 @@
 
         android:fontFamily="sans-serif"
 
-        android:hint="password"
+        android:hint="@string/password"
 
         android:inputType="textPassword"
 

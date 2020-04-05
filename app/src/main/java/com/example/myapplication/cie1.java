@@ -1,9 +1,18 @@
 package com.example.myapplication;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
+import android.app.PendingIntent;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.telephony.SmsManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,96 +33,127 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.Objects;
 
 public class cie1 extends AppCompatActivity {
-
-    EditText m1, m2, s1, s2, name;
-    Button submit, show, update;
-    DatabaseReference rootRef,subRef,marksRef,valuesRef;
-
-
+    private static final int MY_PERMISSIONS_REQUEST_SEND_SMS =0 ;
+    EditText cie1t, cie1q, cie2t, cie2q, cie3t, cie3q, self, total, names, number;
+    Button submit, sms;
+    DatabaseReference rootRef,cie1ref;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cie1);
 
-        m1 = (EditText) findViewById(R.id.marks1);
-        m2 = (EditText) findViewById(R.id.marks2);
-        s1 = (EditText) findViewById(R.id.subject1);
-        s2 = (EditText) findViewById(R.id.subject2);
-        name = (EditText) findViewById(R.id.name);
+        cie1t = (EditText) findViewById(R.id.cie1t);
+        cie2t = (EditText) findViewById(R.id.cie2t);
+        cie3t = (EditText) findViewById(R.id.cie3t);
+        cie1q = (EditText) findViewById(R.id.cie1q);
+        cie2q = (EditText) findViewById(R.id.cie2q);
+        cie3q = (EditText) findViewById(R.id.cie3q);
+        self = (EditText) findViewById(R.id.self);
+        cie1t = (EditText) findViewById(R.id.cie1t);
+        total = (EditText) findViewById(R.id.total);
+        names = (EditText) findViewById(R.id.name);
+        number = (EditText) findViewById(R.id.number);
         submit = (Button) findViewById(R.id.submit);
-        show = (Button) findViewById(R.id.show);
-        update = (Button) findViewById(R.id.update);
+        sms = (Button) findViewById(R.id.sms);
         rootRef = FirebaseDatabase.getInstance().getReference();
 
-
-
-        //marksRef = subRef.child("Marks");
-        //valuesRef = marksRef.child("Values");
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.SEND_SMS)) {
+            }
+            else {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.SEND_SMS}, MY_PERMISSIONS_REQUEST_SEND_SMS);
+            }
+        }
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String subject1 = s1.getText().toString();
-                String subject2 = s2.getText().toString();
-                String marks1 = m1.getText().toString();
-                String marks2 = m2.getText().toString();
-                String names = name.getText().toString();
+
+                String cie1_t = cie1t.getText().toString();
+                String cie2_t = cie2t.getText().toString();
+                String cie3_t = cie3t.getText().toString();
+                String cie1_q = cie1q.getText().toString();
+                String cie2_q = cie2q.getText().toString();
+                String cie3_q = cie3q.getText().toString();
+                String selfstudy = self.getText().toString();
+                String tot = total.getText().toString();
+                String phone = number.getText().toString();
+                String name = names.getText().toString();
 
 
-                rootRef.child(names);
-                rootRef.child(names).child(subject1);
-                rootRef.child(names).child(subject2);
-                rootRef.child(names).child(subject1).setValue(marks1);
-                rootRef.child(names).child(subject2).setValue(marks2);
+
+                rootRef.child(name);
+                rootRef.child(name).setValue(phone);
+                
+
+
+                rootRef.child(name).child("CIE-1").child("Test").setValue(cie1_t);
+                rootRef.child(name).child("CIE-1").child("Quiz").setValue(cie1_q);
+
+                rootRef.child(name).child("CIE-2").child("Test").setValue(cie2_t);
+                rootRef.child(name).child("CIE-2").child("Quiz").setValue(cie2_q);
+
+                rootRef.child(name).child("CIE-3").child("Test").setValue(cie3_t);
+                rootRef.child(name).child("CIE-3").child("Quiz").setValue(cie3_q);
+
+                rootRef.child(name).child("Self Study").setValue(selfstudy);
+
+
                 Toast.makeText(getApplicationContext(), "Inserted Data into Database", Toast.LENGTH_SHORT).show();
-                m1.setVisibility(View.GONE);
-                m2.setVisibility(View.GONE);
-                s1.setVisibility(View.GONE);
-                s2.setVisibility(View.GONE);
-                name.setVisibility(View.GONE);
+                sms.setVisibility(View.VISIBLE);
 
             }
         });
 
-        show.setOnClickListener(new View.OnClickListener() {
+        sms.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                String subject1 = s1.getText().toString();
-                String subject2 = s2.getText().toString();
-                String marks1 = m1.getText().toString();
-                String marks2 = m2.getText().toString();
-
-                s1.setText(subject1 + ":" + marks1);
-                s2.setText(subject2 + ":" + marks2);
-
-                //m1.setVisibility(View.VISIBLE);
-                //m2.setVisibility(View.VISIBLE);
-                s1.setVisibility(View.VISIBLE);
-                s2.setVisibility(View.VISIBLE);
+                sendSMSMessage();
             }
         });
+    }
 
-        update.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                m1.setVisibility(View.VISIBLE);
-                m2.setVisibility(View.VISIBLE);
-                s1.setVisibility(View.VISIBLE);
-                s2.setVisibility(View.VISIBLE);
-                m1.setText("Enter updated marks");
-                m2.setText("Enter updated marks");
 
-                Toast.makeText(getApplicationContext(), "Click on submit to update", Toast.LENGTH_SHORT).show();
+    protected void sendSMSMessage() {
+        String cie1_t = cie1t.getText().toString();
+        String cie2_t = cie2t.getText().toString();
+        String cie3_t = cie3t.getText().toString();
+        String cie1_q = cie1q.getText().toString();
+        String cie2_q = cie2q.getText().toString();
+        String cie3_q = cie3q.getText().toString();
+        String selfstudy = self.getText().toString();
+        String tot = total.getText().toString();
+        String phone = number.getText().toString();
+        String name = names.getText().toString();
 
+        int icie1_t = Integer.parseInt(cie1_t);
+        int icie2_t = Integer.parseInt(cie2_t);
+        int icie3_t = Integer.parseInt(cie3_t);
+        int icie1_q = Integer.parseInt(cie1_q);
+        int icie2_q = Integer.parseInt(cie2_q);
+        int icie3_q = Integer.parseInt(cie3_q);
+        int iself = Integer.parseInt(selfstudy);
+        double total = (icie1_t + icie2_t + icie3_t)*0.4 + (iself + icie1_q + icie2_q + icie3_q);
+        String stotal = Double.toString(total);
+        String sstotal = stotal.substring(0,2);
+        SmsManager smsManager = SmsManager.getDefault();
+        String msg = "Hello " + name + ", your CIE marks in Global Elective subject is (test,quiz):" + "\n" + "CIE-1: " + cie1_t + "," + cie1_q + "\n" +  "CIE-2: " + cie2_t + "," + cie2_q  + "\n" + "CIE-3: " + cie3_t + "," + cie3_q  + "\n" + "Self Study: "+ selfstudy + "\n" + "Total: " + sstotal + "/" + tot;
+        smsManager.sendTextMessage(phone,null,msg,null,null);
+        Toast.makeText(getApplicationContext(), "SMS sent", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_SEND_SMS: {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Toast.makeText(getApplicationContext(), "Thanks for permitting", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Not permitted", Toast.LENGTH_LONG).show();
+                }
             }
-        });
-
-
-
-
-
-
+        }
 
     }
+
 }
