@@ -74,7 +74,7 @@ public class Main2Activity extends AppCompatActivity {
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
-                        Toast.makeText(getApplicationContext(),"No such entry",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"No such entry found",Toast.LENGTH_SHORT).show();
                     }
                 });
 
